@@ -15,10 +15,7 @@ import Button from '../../../ui/button';
 const checkboxStateReducer = produce((state, action) => {
   switch (action.type) {
     case 'check':
-      state[action.checkboxId] = state[action.checkboxId]
-        ? !state[action.checkboxId]
-        : true;
-
+      state[action.checkboxId] = !state[action.checkboxId];
       break;
     default:
       throw new Error(

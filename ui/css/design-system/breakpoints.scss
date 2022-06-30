@@ -1,6 +1,14 @@
+@use "sass:map";
+
 /*
 Responsive Breakpoints
 */
 $break-small: 575px;
 $break-midpoint: 780px;
 $break-large: 576px;
+
+$screen-sizes-map: (
+  'sm':  576px,
+  'md': 768px,
+  'lg': 1280px,
+);

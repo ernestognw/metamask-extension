@@ -74,7 +74,8 @@ export default function TokenDetailsPage() {
       <Box marginLeft={5} marginRight={6}>
         <Typography
           fontWeight={FONT_WEIGHT.BOLD}
-          margin={[4, 0, 0, 0]}
+          margin={0}
+          marginTop={4}
           variant={TYPOGRAPHY.H6}
           color={COLORS.TEXT_DEFAULT}
           className="token-details__title"
@@ -90,7 +91,8 @@ export default function TokenDetailsPage() {
           <Typography
             align={TEXT_ALIGN.CENTER}
             fontWeight={FONT_WEIGHT.BOLD}
-            margin={[0, 5, 0, 0]}
+            margin={0}
+            marginRight={5}
             variant={TYPOGRAPHY.H4}
             color={COLORS.TEXT_DEFAULT}
             className="token-details__token-value"
@@ -106,14 +108,16 @@ export default function TokenDetailsPage() {
           </Box>
         </Box>
         <Typography
-          margin={[4, 0, 0, 0]}
+          margin={0}
+          marginTop={4}
           variant={TYPOGRAPHY.H7}
           color={COLORS.TEXT_ALTERNATIVE}
         >
           {tokenCurrencyBalance || ''}
         </Typography>
         <Typography
-          margin={[6, 0, 0, 0]}
+          margin={0}
+          marginTop={6}
           variant={TYPOGRAPHY.H9}
           color={COLORS.TEXT_ALTERNATIVE}
           fontWeight={FONT_WEIGHT.BOLD}
@@ -123,7 +127,8 @@ export default function TokenDetailsPage() {
         <Box display={DISPLAY.FLEX}>
           <Typography
             variant={TYPOGRAPHY.H7}
-            margin={[2, 0, 0, 0]}
+            margin={0}
+            marginTop={2}
             color={COLORS.TEXT_DEFAULT}
             overflowWrap={OVERFLOW_WRAP.BREAK_WORD}
             className="token-details__token-address"
@@ -148,7 +153,8 @@ export default function TokenDetailsPage() {
         </Box>
         <Typography
           variant={TYPOGRAPHY.H9}
-          margin={[4, 0, 0, 0]}
+          margin={0}
+          marginTop={4}
           color={COLORS.TEXT_ALTERNATIVE}
           fontWeight={FONT_WEIGHT.BOLD}
         >
@@ -156,14 +162,16 @@ export default function TokenDetailsPage() {
         </Typography>
         <Typography
           variant={TYPOGRAPHY.H7}
-          margin={[1, 0, 0, 0]}
+          margin={0}
+          marginTop={1}
           color={COLORS.TEXT_DEFAULT}
         >
           {token.decimals}
         </Typography>
         <Typography
           variant={TYPOGRAPHY.H9}
-          margin={[4, 0, 0, 0]}
+          margin={0}
+          marginTop={4}
           color={COLORS.TEXT_ALTERNATIVE}
           fontWeight={FONT_WEIGHT.BOLD}
         >
@@ -171,7 +179,8 @@ export default function TokenDetailsPage() {
         </Typography>
         <Typography
           variant={TYPOGRAPHY.H7}
-          margin={[1, 0, 0, 0]}
+          margin={1}
+          marginTop={0}
           color={COLORS.TEXT_DEFAULT}
         >
           {networkType === NETWORK_TYPE_RPC
@@ -182,7 +191,8 @@ export default function TokenDetailsPage() {
           <>
             <Typography
               variant={TYPOGRAPHY.H9}
-              margin={[4, 0, 0, 0]}
+              margin={0}
+              marginTop={4}
               color={COLORS.TEXT_ALTERNATIVE}
               fontWeight={FONT_WEIGHT.BOLD}
             >
@@ -190,7 +200,8 @@ export default function TokenDetailsPage() {
             </Typography>
             <Typography
               variant={TYPOGRAPHY.H7}
-              margin={[1, 0, 0, 0]}
+              margin={0}
+              marginTop={1}
               color={COLORS.TEXT_DEFAULT}
             >
               {`${aggregators}.`}

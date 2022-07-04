@@ -420,7 +420,7 @@ describe('Transfers a custom token from dapp when no gas value is specified', fu
         assert(
           transactionTxt.getText(),
           'Send TST',
-          'Transaction is not done correctly'
+          'Transaction is not done correctly',
         );
 
         await driver.clickElement({

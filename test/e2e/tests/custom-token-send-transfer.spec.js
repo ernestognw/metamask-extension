@@ -78,6 +78,10 @@ describe('Send token from inside MetaMask', function () {
         await driver.clickElement('[data-testid="page-container-footer-next"]');
 
         await driver.delay(2000);
+        await driver.waitForSelector({
+          text: 'Hex',
+          tag: 'button',
+        });
         await driver.clickElement({
           text: 'Hex',
           tag: 'button',
@@ -413,10 +417,10 @@ describe('Transfers a custom token from dapp when no gas value is specified', fu
           text: '-1.5 TST',
         });
 
-        await assert(
+        assert(
           transactionTxt.getText(),
           'Send TST',
-          'Transaction is not done correctly',
+          'Transaction is not done correctly'
         );
 
         await driver.clickElement({

@@ -131,7 +131,7 @@ describe('Send token from inside MetaMask', function () {
           css: '.list-item__heading',
           text: 'Send TST',
         });
-        await assert(
+        assert(
           transactionTxt.getText(),
           'Send TST',
           'Transaction is not done correctly',

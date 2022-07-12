@@ -1,10 +1,7 @@
 import React, { useCallback, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { produce } from 'immer';
-<<<<<<< HEAD
 import classnames from 'classnames';
-=======
->>>>>>> 4395d5364562c5780fc324d9c464859379ad61d8
 import { useI18nContext } from '../../../../hooks/useI18nContext';
 import CheckBox from '../../../ui/check-box/check-box.component';
 import Typography from '../../../ui/typography/typography';
@@ -74,7 +71,6 @@ export default function SnapInstallWarning({ onCancel, onSubmit, warnings }) {
           ? t('snapInstallWarningCheckPlural')
           : t('snapInstallWarningCheck')}
       </Typography>
-<<<<<<< HEAD
       {warnings.map((warning, i) => (
         <div
           className={classnames('checkbox-label', {
@@ -82,10 +78,6 @@ export default function SnapInstallWarning({ onCancel, onSubmit, warnings }) {
           })}
           key={warning.id}
         >
-=======
-      {warnings.map((warning) => (
-        <div className="checkbox-label" key={warning.id}>
->>>>>>> 4395d5364562c5780fc324d9c464859379ad61d8
           <CheckBox
             checked={checkboxState[warning.id] ?? false}
             id={warning.id}

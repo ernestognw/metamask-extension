@@ -5,10 +5,16 @@
     display: flex;
     align-items: flex-start;
     gap: 0 16px;
+<<<<<<< HEAD
     margin-top: 16px;
 
     &--first {
       margin-top: 0;
+=======
+
+    &:nth-child(n+3) {
+      margin-top: 16px;
+>>>>>>> 4395d5364562c5780fc324d9c464859379ad61d8
     }
   }
 

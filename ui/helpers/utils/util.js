@@ -211,6 +211,10 @@ export function exportAsFile(filename, data, type = 'text/csv') {
   }
 }
 
+export function prependZero(num, maxLength) {
+  return num.toString().padStart(maxLength, '0');
+}
+
 /**
  * Shortens an Ethereum address for display, preserving the beginning and end.
  * Returns the given address if it is no longer than 10 characters.

@@ -15,6 +15,7 @@ import {
   setLedgerTransportPreference,
   setDismissSeedBackUpReminder,
   setUseTokenDetection,
+  backupUserData,
 } from '../../../store/actions';
 import { getPreferences } from '../../../selectors';
 import { doesUserHaveALedgerAccount } from '../../../ducks/metamask/metamask';
@@ -63,6 +64,7 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = (dispatch) => {
   return {
+    backupUserData: () => dispatch(backupUserData()),
     setHexDataFeatureFlag: (shouldShow) =>
       dispatch(setFeatureFlag('sendHexData', shouldShow)),
     displayWarning: (warning) => dispatch(displayWarning(warning)),

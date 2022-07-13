@@ -347,6 +347,12 @@
   "backupNow": {
     "message": "Backup now"
   },
+  "backupUserData": {
+    "message": "Backup your data"
+  },
+  "backupUserDataDescription": {
+    "message": "Your data contains preferences and account addresses"
+  },  
   "balance": {
     "message": "Balance"
   },

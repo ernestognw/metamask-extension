@@ -58,6 +58,7 @@ export default class AdvancedTab extends PureComponent {
     userHasALedgerAccount: PropTypes.bool.isRequired,
     useTokenDetection: PropTypes.bool.isRequired,
     setUseTokenDetection: PropTypes.func.isRequired,
+    backupUserData: PropTypes.func.isRequired,
   };
 
   state = {
@@ -110,6 +111,37 @@ export default class AdvancedTab extends PureComponent {
               }}
             >
               {t('syncWithMobile')}
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderUserDataBackup() {
+    const { t } = this.context;
+    return (
+      <div
+        ref={this.settingsRefs[0]}
+        className="settings-page__content-row"
+        data-testid="advanced-setting-data-backup"
+      >
+        <div className="settings-page__content-item">
+          <span>{t('backupUserData')}</span>
+          <span className="settings-page__content-description">
+            {t('backupUserDataDescription')}
+          </span>
+        </div>
+        <div className="settings-page__content-item">
+          <div className="settings-page__content-item-col">
+            <Button
+              type="secondary"
+              large
+              onClick={() => {
+                this.props.backupUserData();
+              }}
+            >
+              {t('backupNow')}
             </Button>
           </div>
         </div>
@@ -724,6 +756,7 @@ export default class AdvancedTab extends PureComponent {
     return (
       <div className="settings-page__body">
         {warning ? <div className="settings-tab__error">{warning}</div> : null}
+        {this.renderUserDataBackup()}
         {this.renderStateLogs()}
         {this.renderMobileSync()}
         {this.renderResetAccount()}

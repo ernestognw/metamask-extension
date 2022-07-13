@@ -116,6 +116,7 @@ import CachedBalancesController from './controllers/cached-balances';
 import AlertController from './controllers/alert';
 import OnboardingController from './controllers/onboarding';
 import ThreeBoxController from './controllers/threebox';
+import BackupController from './controllers/backup';
 import IncomingTransactionsController from './controllers/incoming-transactions';
 import MessageManager, { normalizeMsgData } from './lib/message-manager';
 import DecryptMessageManager from './lib/decrypt-message-manager';
@@ -773,6 +774,15 @@ export default class MetamaskController extends EventEmitter {
       ),
     });
 
+    this.backupController = new BackupController({
+      preferencesController: this.preferencesController,
+      addressBookController: this.addressBookController,
+      initState: initState.BackupController,
+      trackMetaMetricsEvent: this.metaMetricsController.trackEvent.bind(
+        this.metaMetricsController,
+      ),
+    });
+
     this.txController = new TransactionController({
       initState:
         initState.TransactionController || initState.TransactionManager,
@@ -1018,6 +1028,7 @@ export default class MetamaskController extends EventEmitter {
       PermissionLogController: this.permissionLogController.store,
       SubjectMetadataController: this.subjectMetadataController,
       ThreeBoxController: this.threeBoxController.store,
+      BackupController: this.backupController.store,
       AnnouncementController: this.announcementController,
       GasFeeController: this.gasFeeController,
       TokenListController: this.tokenListController,
@@ -1056,6 +1067,7 @@ export default class MetamaskController extends EventEmitter {
         PermissionLogController: this.permissionLogController.store,
         SubjectMetadataController: this.subjectMetadataController,
         ThreeBoxController: this.threeBoxController.store,
+        BackupController: this.backupController.store,
         SwapsController: this.swapsController.store,
         EnsController: this.ensController.store,
         ApprovalController: this.approvalController,
@@ -1474,6 +1486,7 @@ export default class MetamaskController extends EventEmitter {
       smartTransactionsController,
       txController,
       assetsContractController,
+      backupController,
     } = this;
 
     return {
@@ -1947,6 +1960,9 @@ export default class MetamaskController extends EventEmitter {
         appStateController,
       ),
 
+      // BackupController
+      backupUserData: backupController.backupUserData.bind(backupController),
+      
       // DetectTokenController
       detectNewTokens: detectTokensController.detectNewTokens.bind(
         detectTokensController,

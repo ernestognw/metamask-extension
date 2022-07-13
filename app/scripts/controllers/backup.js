@@ -1,4 +1,3 @@
-import { ObservableStore } from '@metamask/obs-store';
 import { exportAsFile, prependZero } from '../../../ui/helpers/utils/util';
 
 export default class BackupController {
@@ -12,11 +11,6 @@ export default class BackupController {
     this.preferencesController = preferencesController;
     this.addressBookController = addressBookController;
     this._trackMetaMetricsEvent = trackMetaMetricsEvent;
-
-    const initState = {
-      ...opts.initState,
-    };
-    this.store = new ObservableStore(initState);
   }
 
   async backupUserData() {

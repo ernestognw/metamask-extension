@@ -31,6 +31,7 @@ describe('AdvancedTab Component', () => {
         useTokenDetection
         setUseTokenDetection={toggleTokenDetection}
         userHasALedgerAccount
+        backupUserData={() => undefined}
       />,
       {
         context: {
@@ -41,7 +42,38 @@ describe('AdvancedTab Component', () => {
   });
 
   it('should render correctly when threeBoxFeatureFlag', () => {
-    expect(component.find('.settings-page__content-row')).toHaveLength(13);
+    expect(component.find('.settings-page__content-row')).toHaveLength(14);
+  });
+
+  it('should render backup button', () => {
+    expect(component.find('.settings-page__content-row')).toHaveLength(14);
+    
+    expect(
+      component
+        .find('.settings-page__content-row')
+        .at(0)
+        .find('.settings-page__content-item'),
+    ).toHaveLength(2);
+
+    expect(
+      component
+        .find('.settings-page__content-row')
+        .at(0)
+        .find('.settings-page__content-item')
+        .at(0)
+        .find('.settings-page__content-description')
+        .props().children,
+    ).toStrictEqual('_backupUserDataDescription');
+
+    expect(
+      component
+        .find('.settings-page__content-row')
+        .at(0)
+        .find('.settings-page__content-item')
+        .at(1)
+        .find('Button')
+        .props().children,
+    ).toStrictEqual('_backupNow');
   });
 
   it('should update autoLockTimeLimit', () => {
@@ -63,6 +95,7 @@ describe('AdvancedTab Component', () => {
         useTokenDetection
         setUseTokenDetection={toggleTokenDetection}
         userHasALedgerAccount
+        backupUserData={() => undefined}
       />,
       {
         context: {
@@ -71,7 +104,7 @@ describe('AdvancedTab Component', () => {
       },
     );
 
-    const autoTimeout = component.find('.settings-page__content-row').at(8);
+    const autoTimeout = component.find('.settings-page__content-row').at(9);
     const textField = autoTimeout.find(TextField);
 
     textField.props().onChange({ target: { value: 1440 } });
@@ -82,7 +115,7 @@ describe('AdvancedTab Component', () => {
   });
 
   it('should toggle show test networks', () => {
-    const testNetworks = component.find('.settings-page__content-row').at(6);
+    const testNetworks = component.find('.settings-page__content-row').at(7);
     const toggleButton = testNetworks.find(ToggleButton);
     toggleButton.first().simulate('toggle');
     expect(toggleTestnet.calledOnce).toStrictEqual(true);
@@ -108,6 +141,7 @@ describe('AdvancedTab Component', () => {
         useTokenDetection
         setUseTokenDetection={toggleTokenDetection}
         userHasALedgerAccount
+        backupUserData={() => undefined}
       />,
       {
         context: {
@@ -118,7 +152,7 @@ describe('AdvancedTab Component', () => {
     );
     const useTokenDetection = component
       .find('.settings-page__content-row')
-      .at(4);
+      .at(5);
     const toggleButton = useTokenDetection.find(ToggleButton);
     toggleButton.first().simulate('toggle');
     expect(toggleTokenDetection.calledOnce).toStrictEqual(true);
@@ -145,6 +179,7 @@ describe('AdvancedTab Component', () => {
         useTokenDetection
         setUseTokenDetection={toggleTokenDetection}
         userHasALedgerAccount
+        backupUserData={() => undefined}
       />,
       {
         context: {

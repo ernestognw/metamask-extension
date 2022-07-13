@@ -787,7 +787,7 @@ export function backupUserData() {
       throw error;
     }
 
-    return updatedTransaction;
+    return backedupData;
   };
 }
 

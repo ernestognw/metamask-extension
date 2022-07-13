@@ -47,7 +47,7 @@ describe('AdvancedTab Component', () => {
 
   it('should render backup button', () => {
     expect(component.find('.settings-page__content-row')).toHaveLength(14);
-    
+
     expect(
       component
         .find('.settings-page__content-row')

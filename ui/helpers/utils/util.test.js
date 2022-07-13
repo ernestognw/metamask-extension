@@ -6,7 +6,7 @@ describe('util', () => {
   for (let i = 0; i < 18; i++) {
     ethInWei += '0';
   }
-  
+
   describe('#parseBalance', () => {
     it('should render 0.01 eth correctly', () => {
       const input = '0x2386F26FC10000';
@@ -429,7 +429,7 @@ describe('util', () => {
     it('should prepend zero', () => {
       const num = 5;
       const maxLength = 5;
-      const expected = "00005";
+      const expected = '00005';
       const result = util.prependZero(num, maxLength);
       expect(result).toStrictEqual(expected);
     });

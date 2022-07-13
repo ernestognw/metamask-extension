@@ -1961,7 +1961,7 @@ export default class MetamaskController extends EventEmitter {
 
       // BackupController
       backupUserData: backupController.backupUserData.bind(backupController),
-      
+
       // DetectTokenController
       detectNewTokens: detectTokensController.detectNewTokens.bind(
         detectTokensController,

@@ -2033,6 +2033,25 @@ export default class MetamaskController extends EventEmitter {
         blockExplorerUrl,
       },
     );
+
+    this.metaMetricsController.trackEvent({
+      event: 'Custom Network Added',
+      category: EVENT.CATEGORIES.NETWORK,
+      referrer: {
+        url: rpcUrl,
+      },
+      properties: {
+        chain_id: chainId,
+        network_name: chainName,
+        network: rpcUrl,
+        symbol: ticker,
+        block_explorer_url: blockExplorerUrl,
+        source: EVENT.SOURCE.NETWORK.POPULAR_NETWORK_LIST,
+      },
+      sensitiveProperties: {
+        rpc_url: rpcUrl,
+      },
+    });
   }
 
   /**

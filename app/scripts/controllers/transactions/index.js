@@ -2092,7 +2092,7 @@ export default class TransactionController extends EventEmitter {
       device_model: await this.getDeviceModel(this.getSelectedAddress()),
       asset_type: assetType,
       token_standard: tokenStandard,
-      transaction_speed_up: type === TRANSACTION_TYPES.RETRY && true,
+      transaction_speed_up: type === TRANSACTION_TYPES.RETRY,
     };
 
     const sensitiveProperties = {

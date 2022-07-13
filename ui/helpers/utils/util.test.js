@@ -6,7 +6,7 @@ describe('util', () => {
   for (let i = 0; i < 18; i++) {
     ethInWei += '0';
   }
-
+  
   describe('#parseBalance', () => {
     it('should render 0.01 eth correctly', () => {
       const input = '0x2386F26FC10000';
@@ -424,6 +424,14 @@ describe('util', () => {
       expect(result.to[0].wallets).toHaveLength(3);
       expect(result.do_not_display).toBeUndefined();
       expect(result.do_not_display_2).toBeUndefined();
+    });
+
+    it('should prepend zero', () => {
+      const num = 5;
+      const maxLength = 5;
+      const expected = "00005";
+      const result = util.prependZero(num, maxLength);
+      expect(result).toStrictEqual(expected);
     });
   });
 });

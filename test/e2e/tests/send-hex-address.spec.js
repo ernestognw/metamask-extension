@@ -179,6 +179,7 @@ describe('Send ERC20 to a 40 character hexadecimal address', function () {
           windowHandles,
         );
         await driver.clickElement({ text: 'Add Token', tag: 'button' });
+        await driver.delay(veryLargeDelayMs * 4);
         await driver.waitUntilXWindowHandles(2);
         await driver.switchToWindow(extension);
 

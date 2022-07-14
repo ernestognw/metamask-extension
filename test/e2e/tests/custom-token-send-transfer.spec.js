@@ -22,6 +22,7 @@ describe('Send token from inside MetaMask', function () {
         fixtures: 'connected-state',
         ganacheOptions,
         title: this.test.title,
+        failOnConsoleError: false,
       },
       async ({ driver }) => {
         await driver.navigate();

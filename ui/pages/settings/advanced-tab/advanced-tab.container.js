@@ -16,6 +16,7 @@ import {
   setDismissSeedBackUpReminder,
   setUseTokenDetection,
   backupUserData,
+  restoreUserData,
 } from '../../../store/actions';
 import { getPreferences } from '../../../selectors';
 import { doesUserHaveALedgerAccount } from '../../../ducks/metamask/metamask';
@@ -65,6 +66,7 @@ export const mapStateToProps = (state) => {
 export const mapDispatchToProps = (dispatch) => {
   return {
     backupUserData: () => dispatch(backupUserData()),
+    restoreUserData: (jsonString) => dispatch(restoreUserData(jsonString)),
     setHexDataFeatureFlag: (shouldShow) =>
       dispatch(setFeatureFlag('sendHexData', shouldShow)),
     displayWarning: (warning) => dispatch(displayWarning(warning)),

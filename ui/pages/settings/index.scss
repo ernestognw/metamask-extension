@@ -12,6 +12,12 @@
   display: flex;
   flex-flow: column nowrap;
 
+  &__error-text {
+    @include H7;
+
+    color: var(--color-error-default);
+  }
+
   &__header {
     padding: 8px 24px 8px 24px;
     position: relative;
@@ -282,10 +288,6 @@
     &--disabled {
       cursor: not-allowed;
       opacity: 0.5;
-    }
-
-    & .dialog {
-      margin-top: 10px;
     }
 
     &__identicon {

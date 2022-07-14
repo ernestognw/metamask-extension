@@ -791,6 +791,20 @@ export function backupUserData() {
   };
 }
 
+export function restoreUserData(jsonString) {
+  return async (dispatch) => {
+    try {
+      await promisifiedBackground.restoreUserData(jsonString);
+    } catch (error) {
+      dispatch(txError(error));
+      log.error(error.message);
+      throw error;
+    }
+
+    return true;
+  };
+}
+
 export function updateTransactionGasFees(txId, txGasFees) {
   return async (dispatch) => {
     let updatedTransaction;

@@ -51,7 +51,7 @@ export default class ComposableObservableStore extends ObservableStore {
   updateStructure(config) {
     this.config = config;
     this.removeAllListeners();
-    console.log("Config: ", config);
+    console.log('Config: ', config);
     for (const key of Object.keys(config)) {
       if (!config[key]) {
         throw new Error(`Undefined '${key}'`);

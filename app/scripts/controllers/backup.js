@@ -13,6 +13,17 @@ export default class BackupController {
     this._trackMetaMetricsEvent = trackMetaMetricsEvent;
   }
 
+  async restoreUserData(jsonString) {
+    console.log('jsonString: ', jsonString);
+    const { preferences, addressBook } = JSON.parse(jsonString);
+    preferences && this.preferencesController.store.updateState(preferences);
+    addressBook && this.addressBookController.update(addressBook, true);
+    this._trackMetaMetricsEvent({
+      event: 'User restored data from backup',
+      category: 'backup',
+    });
+  }
+
   async backupUserData() {
     const userData = {
       preferences: this.preferencesController.store.getState(),

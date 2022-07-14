@@ -59,6 +59,7 @@ export default class AdvancedTab extends PureComponent {
     useTokenDetection: PropTypes.bool.isRequired,
     setUseTokenDetection: PropTypes.func.isRequired,
     backupUserData: PropTypes.func.isRequired,
+    restoreUserData: PropTypes.func.isRequired,
   };
 
   state = {
@@ -67,6 +68,8 @@ export default class AdvancedTab extends PureComponent {
     ipfsGateway: this.props.ipfsGateway,
     ipfsGatewayError: '',
     showLedgerTransportWarning: false,
+    showResultMessage: false,
+    restoreSuccessful: true,
   };
 
   settingsRefs = Array(
@@ -113,6 +116,80 @@ export default class AdvancedTab extends PureComponent {
               {t('syncWithMobile')}
             </Button>
           </div>
+        </div>
+      </div>
+    );
+  }
+
+  async getTextFromFile(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new window.FileReader();
+      reader.onload = (e) => {
+        const text = e.target.result;
+        resolve(text);
+      };
+
+      reader.onerror = (e) => {
+        reject(e);
+      };
+
+      reader.readAsText(file);
+    });
+  }
+
+  async handleFileUpload(event) {
+    const file = event.target.files[0];
+    const jsonString = await this.getTextFromFile(file);
+    const result = await this.props.restoreUserData(jsonString);
+    this.setState({
+      showResultMessage: true,
+      restoreSuccessful: result,
+    });
+  }
+
+  renderRestoreUserData() {
+    const { t } = this.context;
+    const { showResultMessage, restoreSuccessful } = this.state;
+
+    return (
+      <div
+        ref={this.settingsRefs[0]}
+        className="settings-page__content-row"
+        data-testid="advanced-setting-data-backup"
+      >
+        <div className="settings-page__content-item">
+          <span>{t('restoreUserData')}</span>
+          <span className="settings-page__content-description">
+            {t('restoreUserDataDescription')}
+          </span>
+        </div>
+        <div className="settings-page__content-item">
+          <div className="settings-page__content-item-col">
+            <label
+              htmlFor="restore-file"
+              className="button btn btn--rounded btn-secondary btn--large"
+            >
+              {t('restore')}
+            </label>
+            <input
+              id="restore-file"
+              style={{ visibility: 'hidden' }}
+              type="file"
+              accept=".json"
+              onChange={(e) => this.handleFileUpload(e)}
+            />
+          </div>
+          {showResultMessage && restoreSuccessful && (
+            <span className="settings-page__content-description">
+              {t('restoreSuccessful')}
+            </span>
+          )}
+
+          {showResultMessage && !restoreSuccessful && (
+            <span className="settings-page__error-text">
+              {t('restoreFailed')}
+            </span>
+          )}
         </div>
       </div>
     );
@@ -757,6 +834,7 @@ export default class AdvancedTab extends PureComponent {
       <div className="settings-page__body">
         {warning ? <div className="settings-tab__error">{warning}</div> : null}
         {this.renderUserDataBackup()}
+        {this.renderRestoreUserData()}
         {this.renderStateLogs()}
         {this.renderMobileSync()}
         {this.renderResetAccount()}

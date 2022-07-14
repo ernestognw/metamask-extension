@@ -218,7 +218,7 @@ export default class AdvancedTab extends PureComponent {
                 this.props.backupUserData();
               }}
             >
-              {t('backupNow')}
+              {t('backup')}
             </Button>
           </div>
         </div>

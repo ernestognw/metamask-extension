@@ -32,6 +32,7 @@ describe('AdvancedTab Component', () => {
         setUseTokenDetection={toggleTokenDetection}
         userHasALedgerAccount
         backupUserData={() => undefined}
+        restoreUserData={() => undefined}
       />,
       {
         context: {
@@ -42,11 +43,11 @@ describe('AdvancedTab Component', () => {
   });
 
   it('should render correctly when threeBoxFeatureFlag', () => {
-    expect(component.find('.settings-page__content-row')).toHaveLength(14);
+    expect(component.find('.settings-page__content-row')).toHaveLength(15);
   });
 
   it('should render backup button', () => {
-    expect(component.find('.settings-page__content-row')).toHaveLength(14);
+    expect(component.find('.settings-page__content-row')).toHaveLength(15);
 
     expect(
       component
@@ -73,8 +74,39 @@ describe('AdvancedTab Component', () => {
         .at(1)
         .find('Button')
         .props().children,
-    ).toStrictEqual('_backupNow');
+    ).toStrictEqual('_backup');
   });
+
+  it('should render restore button', () => {
+    expect(component.find('.settings-page__content-row')).toHaveLength(15);
+
+    expect(
+      component
+        .find('.settings-page__content-row')
+        .at(1)
+        .find('.settings-page__content-item'),
+    ).toHaveLength(2);
+
+    expect(
+      component
+        .find('.settings-page__content-row')
+        .at(1)
+        .find('.settings-page__content-item')
+        .at(0)
+        .find('.settings-page__content-description')
+        .props().children,
+    ).toStrictEqual('_restoreUserDataDescription');
+
+    expect(
+      component
+        .find('.settings-page__content-row')
+        .at(1)
+        .find('.settings-page__content-item')
+        .at(1)
+        .find('label')
+        .props().children,
+    ).toStrictEqual('_restore');
+  });  
 
   it('should update autoLockTimeLimit', () => {
     setAutoLockTimeLimitSpy = sinon.spy();
@@ -96,6 +128,7 @@ describe('AdvancedTab Component', () => {
         setUseTokenDetection={toggleTokenDetection}
         userHasALedgerAccount
         backupUserData={() => undefined}
+        restoreUserData={() => undefined}
       />,
       {
         context: {
@@ -104,7 +137,7 @@ describe('AdvancedTab Component', () => {
       },
     );
 
-    const autoTimeout = component.find('.settings-page__content-row').at(9);
+    const autoTimeout = component.find('.settings-page__content-row').at(10);
     const textField = autoTimeout.find(TextField);
 
     textField.props().onChange({ target: { value: 1440 } });
@@ -115,7 +148,7 @@ describe('AdvancedTab Component', () => {
   });
 
   it('should toggle show test networks', () => {
-    const testNetworks = component.find('.settings-page__content-row').at(7);
+    const testNetworks = component.find('.settings-page__content-row').at(8);
     const toggleButton = testNetworks.find(ToggleButton);
     toggleButton.first().simulate('toggle');
     expect(toggleTestnet.calledOnce).toStrictEqual(true);
@@ -142,6 +175,7 @@ describe('AdvancedTab Component', () => {
         setUseTokenDetection={toggleTokenDetection}
         userHasALedgerAccount
         backupUserData={() => undefined}
+        restoreUserData={() => undefined}
       />,
       {
         context: {
@@ -152,7 +186,7 @@ describe('AdvancedTab Component', () => {
     );
     const useTokenDetection = component
       .find('.settings-page__content-row')
-      .at(5);
+      .at(6);
     const toggleButton = useTokenDetection.find(ToggleButton);
     toggleButton.first().simulate('toggle');
     expect(toggleTokenDetection.calledOnce).toStrictEqual(true);
@@ -180,6 +214,7 @@ describe('AdvancedTab Component', () => {
         setUseTokenDetection={toggleTokenDetection}
         userHasALedgerAccount
         backupUserData={() => undefined}
+        restoreUserData={() => undefined}
       />,
       {
         context: {

@@ -271,7 +271,7 @@ describe('Send a custom token from dapp', function () {
         await driver.switchToWindow(windowHandles.dapp);
 
         await driver.clickElement({ text: 'Transfer Tokens', tag: 'button' });
-        await driver.delay(4000);
+        await driver.delay(2000);
 
         windowHandles = await getWindowHandles(driver, 3);
         await driver.switchToWindow(windowHandles.popup);
@@ -384,7 +384,7 @@ describe('Transfers a custom token from dapp when no gas value is specified', fu
           tag: 'button',
         });
 
-        await driver.delay(6000);
+        await driver.delay(2000);
         windowHandles = await getWindowHandles(driver, 3);
         await driver.switchToWindow(windowHandles.popup);
         await driver.waitForSelector('.confirm-page-container-summary__title');

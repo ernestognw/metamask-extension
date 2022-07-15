@@ -106,7 +106,7 @@ describe('AdvancedTab Component', () => {
         .find('label')
         .props().children,
     ).toStrictEqual('_restore');
-  });  
+  });
 
   it('should update autoLockTimeLimit', () => {
     setAutoLockTimeLimitSpy = sinon.spy();

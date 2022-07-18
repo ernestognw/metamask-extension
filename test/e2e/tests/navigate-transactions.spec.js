@@ -99,54 +99,6 @@ describe('Navigate transactions', function () {
     );
   });
 
-  it('should add a transaction while the confirm page is in focus', async function () {
-    await withFixtures(
-      {
-        dapp: true,
-        fixtures: 'navigate-transactions',
-        ganacheOptions,
-        title: this.test.title,
-      },
-      async ({ driver }) => {
-        await driver.navigate();
-        await driver.fill('#password', 'correct horse battery staple');
-        await driver.press('#password', driver.Key.ENTER);
-
-        await driver.clickElement('[data-testid="next-page"]');
-        let navigationElement = await driver.findElement(
-          '.confirm-page-container-navigation',
-        );
-        let navigationText = await navigationElement.getText();
-        assert.equal(
-          navigationText.includes('2 of 4'),
-          true,
-          'second transaction in focus',
-        );
-
-        // add transaction
-        await driver.openNewPage('http://127.0.0.1:8080/');
-        await driver.clickElement({ text: 'Send', tag: 'button' });
-        await driver.waitUntilXWindowHandles(3);
-        const windowHandles = await driver.getAllWindowHandles();
-        const extension = windowHandles[0];
-        await driver.switchToWindow(extension);
-        navigationElement = await driver.waitForSelector(
-          {
-            css: '.confirm-page-container-navigation',
-            text: '2 of 5',
-          },
-          { timeout: 10000 },
-        );
-        navigationText = await navigationElement.getText();
-        assert.equal(
-          navigationText.includes('2 of 5'),
-          true,
-          'correct (same) transaction in focus',
-        );
-      },
-    );
-  });
-
   it('should reject and remove an unapproved transaction', async function () {
     await withFixtures(
       {
